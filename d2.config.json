@@ -1,0 +1,11 @@
+{
+  "type": "app",
+  "name": "hisptz-scorecard",
+  "title": "Interactive Scorecard",
+  "dataStoreNamespace": "hisptz-scorecard",
+  "version": "2.6.5",
+  "description": "Interactive Scorecard Application",
+  "entryPoints": {
+    "app": "index.html"
+  }
+}
