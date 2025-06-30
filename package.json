@@ -1,34 +1,95 @@
 {
-  "name": "root",
-  "version": "2.6.3",
+  "name": "app",
+  "version": "2.6.5",
   "description": "Interactive Scorecard Application",
   "license": "BSD-3-Clause",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": []
-  },
   "scripts": {
-    "app": "yarn workspace app",
-    "widget": "yarn workspace widget",
-    "shared": "yarn workspace @scorecard/shared",
-    "build:shared": "npx lerna run build --scope=@scorecard/shared",
-    "start:app": "npx lerna run start --scope=app",
-    "test:app": "npx lerna run test --scope=app",
-    "start:widget": "npx lerna run start --scope=widget",
-    "build": "npx lerna run build",
-    "test": "npx lerna run test",
-    "deploy:app": "yarn app deploy",
-    "deploy": "yarn widget deploy"
+    "build": "d2-app-scripts build",
+    "deploy": "d2-app-scripts deploy",
+    "start": "dotenv -- cross-var d2-app-scripts start --proxy %DHIS2_PROXY%",
+    "test": "concurrently 'BROWSER=none yarn start' 'wait-on 'http-get://localhost:3000' && cypress open --browser firefox' --kill-others --success first"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@cypress/react": "^5.10.3",
+    "@cypress/webpack-dev-server": "^1.7.0",
+    "@dhis2/cli-app-scripts": "^10.3.10",
+    "@dhis2/cli-style": "^10.5.1",
+    "@dhis2/cli-utils-cypress": "^9.0.2",
+    "@dhis2/cypress-commands": "^9.0.2",
+    "@dhis2/cypress-plugins": "^9.0.2",
+    "@dhis2/d2-i18n": "^1.1.0",
+    "@hookform/devtools": "^4.0.2",
     "concurrently": "^7.0.0",
-    "lerna": "^6.6.0"
+    "cross-var": "^1.1.0",
+    "cucumber": "^7.0.0-rc.0",
+    "cypress": "9.5.0",
+    "cypress-cucumber-preprocessor": "^4.3.0",
+    "cypress-multi-reporters": "^1.6.0",
+    "cz-conventional-changelog": "3.3.0",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^7.1.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prop-types": "^15.7.2",
+    "react": "16.14.0",
+    "react-error-overlay": "6.0.9",
+    "wait-on": "^6.0.0"
   },
   "dependencies": {
-    "recharts": "^2.15.3"
+    "@dhis2/app-runtime": "^3.9.4",
+    "@dhis2/app-service-datastore": "^1.0.0-alpha.2",
+    "@dhis2/ui": "^8.15.1",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@hisptz/dhis2-ui": "^1.0.69",
+    "@hisptz/dhis2-utils": "^1.0.42",
+    "@iapps/function-analytics": "^1.0.0-beta.23",
+    "@iapps/period-utilities": "^1.0.0-beta.5",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^6.1.10",
+    "@mui/material": "^6.1.10",
+    "@scorecard/shared": "*",
+    "antd": "^5.22.3",
+    "async": "^3.2.0",
+    "async-es": "^3.2.4",
+    "cypress-multi-reporters": "^1.6.0",
+    "file-saver": "^2.0.5",
+    "highcharts": "^9.3.1",
+    "immer": "^9.0.5",
+    "intro.js": "^5.0.0",
+    "intro.js-react": "^0.5.0",
+    "jodit-react": "^1.1.25",
+    "lodash": "^4.17.21",
+    "luxon": "^2.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-color": "^2.19.3",
+    "react-dnd": "^15.1.1",
+    "react-dnd-html5-backend": "^15.1.2",
+    "react-error-boundary": "^3.1.3",
+    "react-error-overlay": "6.0.9",
+    "react-hook-form": "^7.43.8",
+    "react-js-loading-shimmer": "^1.0.10",
+    "react-jsx-parser": "^1.28.4",
+    "react-router-dom": "5",
+    "react-to-print": "^2.14.0",
+    "react-web-vitals": "^1.0.1",
+    "recharts": "^2.15.3",
+    "recoil": "^0.6.1",
+    "usehooks-ts": "^2.9.1",
+    "xlsx": "^0.18.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
   }
 }
