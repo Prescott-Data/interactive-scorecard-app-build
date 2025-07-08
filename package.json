@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "2.6.6",
+  "version": "2.6.7",
   "description": "Interactive Scorecard Application",
   "license": "BSD-3-Clause",
   "private": true,
